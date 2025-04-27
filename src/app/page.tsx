@@ -7,6 +7,7 @@ import AboutSection from './components/AboutSection';
 import ServicesSection from './components/ServicesSection';
 import TeamSection from './components/TeamSection';
 import PropertiesSection from './components/PropertiesSection';
+import ChatbotSection from './components/ChatbotSection'; // 新增聊天機器人部分
 import Footer from './components/Footer';
 import MatrixCanvas from './components/MatrixCanvas';
 import BootScreen from './components/BootScreen';
@@ -15,6 +16,7 @@ import './properties.css';
 import './header.css';
 import './services.css';
 import './bootscreen.css';
+import './chatbot.css'; // 新增聊天機器人樣式
 import { Language } from './globals.d';
 
 // Ensure TypeScript can recognize window.matrixInterval
@@ -169,6 +171,7 @@ export default function Home() {
           <ServicesSection fadeIn={contentFaded} />
           <TeamSection fadeIn={contentFaded} />
           <PropertiesSection lang={currentLang} fadeIn={contentFaded} />
+          <ChatbotSection lang={currentLang} fadeIn={contentFaded} /> {/* 新增聊天機器人部分 */}
         </main>
         <Footer lang={currentLang} />
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image'; // Add Image import
+import Image from 'next/image';
 import { Language } from '../globals.d';
 import '../header.css';
 
@@ -94,6 +94,14 @@ const Header: React.FC<HeaderProps> = ({
           >
             <span className="en">Properties</span>
             <span className="zh">精選房源</span>
+          </a>
+          <a 
+            href="#chatbot" 
+            className="nav-link" 
+            onClick={(e) => handleNavClick(e, '#chatbot')}
+          >
+            <span className="en">AI Assistant</span>
+            <span className="zh">AI助理</span>
           </a>
         </nav>
 
