@@ -1,0 +1,247 @@
+/* Team Section Styles - 科技感字体增强版 */
+#about {
+    padding: 4rem 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    position: relative;
+  }
+  
+  /* 添加科技背景元素 */
+  #about::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 90% 20%, rgba(0,255,140,0.05) 0%, rgba(0,0,0,0) 50%);
+    z-index: -1;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 0 10px var(--glow-color);
+    font-family: 'Rajdhani', 'Noto Sans TC', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    position: relative;
+  }
+  
+  /* 添加标题装饰线 */
+  .section-title::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0,255,140,0) 0%, rgba(0,255,140,1) 50%, rgba(0,255,140,0) 100%);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(0, 255, 140, 0.8);
+  }
+  
+  .team-members {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+  }
+  
+  .team-member {
+    background: rgba(20, 20, 30, 0.6);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 140, 0.2);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    position: relative;
+    
+    /* 科技感边角 */
+    --slice: 8px;
+    --accent: rgba(0, 255, 140, 0.5);
+  }
+  
+  /* 添加科技感边角 */
+  .team-member::before,
+  .team-member::after,
+  .team-member > .corner-decoration::before,
+  .team-member > .corner-decoration::after {
+    content: "";
+    position: absolute;
+    width: var(--slice);
+    height: var(--slice);
+    border: 1px solid var(--accent);
+    z-index: 1;
+  }
+  
+  .team-member::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+  }
+  
+  .team-member::after {
+    top: 0;
+    right: 0;
+    border-left: none;
+    border-bottom: none;
+  }
+  
+  .team-member > .corner-decoration::before {
+    bottom: 0;
+    left: 0;
+    border-right: none;
+    border-top: none;
+  }
+  
+  .team-member > .corner-decoration::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+  }
+  
+  .team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 255, 140, 0.3);
+    border-color: rgba(0, 255, 140, 0.5);
+  }
+  
+  /* 添加悬停发光效果 */
+  @keyframes cardGlow {
+    0% { box-shadow: 0 0 15px rgba(0, 255, 140, 0.3); }
+    50% { box-shadow: 0 0 25px rgba(0, 255, 140, 0.5); }
+    100% { box-shadow: 0 0 15px rgba(0, 255, 140, 0.3); }
+  }
+  
+  .team-member:hover {
+    animation: cardGlow 2s infinite;
+  }
+  
+  .member-img {
+    margin: 0 auto 1.5rem;
+    width: 180px;
+    height: 180px;
+    position: relative;
+    border: 2px solid rgba(0, 255, 140, 0.4);
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 0 0 15px rgba(0, 255, 140, 0.3);
+  }
+  
+  /* 添加发光环效果 */
+  .member-img::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, transparent, rgba(0, 255, 140, 0.3), transparent);
+    z-index: -1;
+    animation: rotateGlow 6s linear infinite;
+  }
+  
+  @keyframes rotateGlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .team-image {
+    transition: all 0.5s ease;
+  }
+  
+  .team-member:hover .team-image {
+    transform: scale(1.05);
+  }
+  
+  .member-name {
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 0.5rem;
+    font-family: 'Rajdhani', 'Noto Sans TC', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  
+  .member-title {
+    font-size: 1.2rem;
+    color: #00ff8c;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    font-family: 'Barlow', 'Noto Sans TC', sans-serif;
+    letter-spacing: 0.03em;
+  }
+  
+  .member-education {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    font-family: 'Barlow', 'Noto Sans TC', sans-serif;
+  }
+  
+  .member-experience {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+    font-family: 'Barlow', 'Noto Sans TC', sans-serif;
+  }
+  
+  /* 中文字体特殊处理 */
+  .member-name .zh,
+  .member-title .zh,
+  .member-education .zh,
+  .member-experience .zh {
+    font-family: 'Noto Sans TC', sans-serif;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Fade in animation */
+  #about.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  #about.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .team-members {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .team-member {
+      width: 100%;
+      max-width: 100%;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .section-title::after {
+      width: 60px;
+      bottom: -8px;
+    }
+  }

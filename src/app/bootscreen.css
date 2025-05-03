@@ -1,78 +1,170 @@
 /* 启动屏幕样式 */
 #boot-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
-    color: var(--language-active, #ffffff);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Courier New', monospace;
-    z-index: 9999;
-    transition: opacity 0.5s ease; /* 加快过渡动画 */
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Courier New', monospace;
+  z-index: 9999;
+  transition: opacity 0.5s ease; /* 加快过渡动画 */
+}
+
+.boot-terminal {
+  width: 80%;
+  max-width: 700px;
+  padding: 30px;
+  border: 1px solid #00ff8c;
+  border-radius: 8px;
+  background-color: rgba(0, 10, 0, 0.8);
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.6;
+  box-shadow: 0 0 20px rgba(0, 255, 140, 0.3);
+  margin-bottom: 30px; /* 为跳过按钮留出空间 */
+  position: relative;
+  overflow: visible; /* 修改为visible，避免内容被裁剪 */
+}
+
+.boot-log-line {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease; /* 加快過渡動畫 */
+  margin-bottom: 10px;
+  padding-left: 5px;
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  visibility: visible !important; /* 确保可见性 */
+}
+
+.boot-log-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible !important; /* 确保可见性 */
+}
+
+/* 增加最後一行特殊樣式 */
+.boot-log-line:last-child.visible {
+  color: #ffffff;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 5px rgba(0, 255, 140, 0.8);
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 18px;
+  background-color: #00ff8c;
+  margin-left: 5px;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* 控制按鈕區域樣式 */
+.boot-controls {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  z-index: 10000; /* 确保按钮在最顶层 */
+}
+
+/* 跳过按钮样式 */
+.skip-button {
+  background-color: transparent;
+  border: 1px solid #00ff8c;
+  color: #00ff8c;
+  padding: 8px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-family: 'Courier New', monospace;
+}
+
+.skip-button:hover {
+  background-color: rgba(0, 255, 140, 0.2);
+}
+
+.skip-button:active {
+  background-color: rgba(0, 255, 140, 0.4);
+}
+
+/* 語言切換按鈕樣式 */
+.language-toggle {
+  background-color: transparent;
+  border: 1px solid rgba(0, 255, 140, 0.5);
+  color: #00ff8c;
+  padding: 8px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Courier New', monospace;
+}
+
+.language-toggle:hover {
+  background-color: rgba(0, 255, 140, 0.1);
+  border-color: #00ff8c;
+}
+
+/* 添加打字機效果 */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+.boot-terminal .system-ready {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 2s steps(40, end);
+  color: #00ff8c;
+  font-weight: bold;
+}
+
+/* 响应式设计优化 */
+@media (max-width: 768px) {
   .boot-terminal {
-    width: 80%;
-    max-width: 700px;
-    padding: 30px;
-    border: 1px solid #00ff8c;
-    border-radius: 8px;
-    background-color: rgba(0, 10, 0, 0.8);
-    text-align: left;
-    font-size: 16px;
-    line-height: 1.6;
-    box-shadow: 0 0 20px rgba(0, 255, 140, 0.3);
-    margin-bottom: 30px; /* 为跳过按钮留出空间 */
+    width: 90%;
+    padding: 20px;
+    font-size: 14px;
   }
   
   .boot-log-line {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.2s ease, transform 0.2s ease; /* 加快过渡动画 */
-    margin-bottom: 10px;
-  }
-  
-  .boot-log-line.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .terminal-cursor {
-    display: inline-block;
-    width: 10px;
-    height: 18px;
-    background-color: #00ff8c;
-    margin-left: 5px;
-    animation: blink 1s step-start infinite;
-  }
-  
-  @keyframes blink {
-    50% { opacity: 0; }
-  }
-  
-  /* 跳过按钮样式 */
-  .skip-button {
-    background-color: transparent;
-    border: 1px solid #00ff8c;
-    color: #00ff8c;
-    padding: 8px 20px;
     font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    font-family: 'Courier New', monospace;
-    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .boot-terminal {
+    width: 95%;
+    padding: 15px;
+    font-size: 12px;
   }
   
-  .skip-button:hover {
-    background-color: rgba(0, 255, 140, 0.2);
+  .boot-controls {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 80%;
   }
   
-  .skip-button:active {
-    background-color: rgba(0, 255, 140, 0.4);
+  .skip-button, .language-toggle {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
   }
+  
+  .boot-log-line {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,197 @@
+/* Contact Section Styles */
+#contact {
+    padding: 4rem 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  .contact-container {
+    display: flex;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .contact-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    background: rgba(20, 20, 30, 0.6);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 140, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(0, 255, 140, 0.5);
+  }
+  
+  .contact-item i {
+    font-size: 2rem;
+    color: #00ff8c;
+    margin-top: 0.5rem;
+  }
+  
+  .contact-item h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.95);
+  }
+  
+  .contact-item p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .contact-form-container {
+    flex: 2;
+    background: rgba(20, 20, 30, 0.6);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 140, 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-group label {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .required {
+    color: #ff4757;
+    font-size: 1.2rem;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 0.8rem 1rem;
+    background: rgba(30, 30, 40, 0.9);
+    border: 1px solid rgba(0, 255, 140, 0.3);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #00ff8c;
+    box-shadow: 0 0 10px rgba(0, 255, 140, 0.3);
+  }
+  
+  .submit-button {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, rgba(0, 255, 140, 0.5), rgba(0, 255, 140, 0.2));
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    align-self: flex-start;
+  }
+  
+  .submit-button:hover {
+    background: linear-gradient(135deg, rgba(0, 255, 140, 0.7), rgba(0, 255, 140, 0.4));
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 255, 140, 0.3);
+  }
+  
+  .error-message {
+    background: rgba(255, 71, 87, 0.2);
+    color: #ff4757;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    border-left: 4px solid #ff4757;
+    margin-bottom: 1rem;
+  }
+  
+  .success-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    text-align: center;
+    height: 100%;
+    padding: 3rem 2rem;
+  }
+  
+  .success-message i {
+    font-size: 4rem;
+    color: #00ff8c;
+  }
+  
+  .success-message p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* Fade in animation */
+  #contact.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  #contact.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 992px) {
+    .contact-container {
+      flex-direction: column;
+    }
+    
+    .contact-info {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    
+    .contact-item {
+      flex: 1;
+      min-width: 250px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .contact-info {
+      flex-direction: column;
+    }
+    
+    .submit-button {
+      width: 100%;
+    }
+  }

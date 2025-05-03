@@ -1,0 +1,306 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+/* 定義各個領域的主題顏色 */
+:root {
+  --finance-color: rgba(0, 161, 255, 0.7); /* 藍色 - 金融 */
+  --legal-color: rgba(255, 128, 0, 0.7); /* 橙色 - 法律 */
+  --healthcare-color: rgba(214, 51, 108, 0.7); /* 紅色 - 醫療 */
+  --realestate-color: rgba(79, 201, 143, 0.7); /* 綠色 - 房地產 */
+  --ai-color: rgba(180, 110, 240, 0.7); /* 紫色 - AI Prompt */
+  --white-border: rgba(255, 255, 255, 0.3); /* 統一的白色邊框 */
+  --white-border-hover: rgba(255, 255, 255, 0.8); /* 懸停時的白色邊框 */
+  --white-glow: rgba(255, 255, 255, 0.4); /* 統一的白色光暈 */
+}
+
+/* 解決方案網格布局 */
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 固定5個並排 */
+  gap: 1.75rem;
+  padding: 0 2.5rem;
+  max-width: 1800px; /* 進一步增加最大寬度 */
+  margin: 3rem auto 4rem; /* 增加上下間距 */
+}
+
+/* 解決方案卡片樣式 - 完全透明背景 */
+.solution-card {
+  display: flex;
+  flex-direction: column;
+  background: transparent; /* 完全透明背景 */
+  border-radius: 12px;
+  border: 1px solid var(--white-border); /* 統一使用白色邊框 */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  min-height: 380px; /* 增加最小高度 */
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px); /* 背景模糊效果 */
+  -webkit-backdrop-filter: blur(5px); /* Safari支持 */
+}
+
+/* 所有卡片使用相同的白色邊框和光暈 */
+.solution-card {
+  border-color: var(--white-border);
+  box-shadow: 0 0 15px var(--white-glow);
+}
+
+/* 懸停效果 */
+.solution-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px var(--white-glow);
+  border-color: var(--white-border-hover);
+  border-width: 2px;
+}
+
+/* 卡片圖標樣式 */
+.card-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 2.2rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--white-border); /* 統一使用白色邊框 */
+}
+
+/* 為不同領域的圖標保留不同顏色 */
+.solution-card:nth-child(1) .card-icon {
+  color: var(--finance-color);
+}
+
+.solution-card:nth-child(2) .card-icon {
+  color: var(--legal-color);
+}
+
+.solution-card:nth-child(3) .card-icon {
+  color: var(--healthcare-color);
+}
+
+.solution-card:nth-child(4) .card-icon {
+  color: var(--realestate-color);
+}
+
+.solution-card:nth-child(5) .card-icon {
+  color: var(--ai-color);
+}
+
+.solution-card:hover .card-icon {
+  transform: scale(1.1);
+  border-color: var(--white-border-hover);
+}
+
+/* 卡片標題樣式 */
+.solution-card .card-title {
+  font-size: 1.8rem; /* 增大字體 */
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.95); /* 白色標題 */
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+/* 為不同領域的標題設定懸停時的顏色 */
+.solution-card:nth-child(1):hover .card-title {
+  color: var(--finance-color);
+  text-shadow: 0 0 10px var(--finance-color);
+}
+
+.solution-card:nth-child(2):hover .card-title {
+  color: var(--legal-color);
+  text-shadow: 0 0 10px var(--legal-color);
+}
+
+.solution-card:nth-child(3):hover .card-title {
+  color: var(--healthcare-color);
+  text-shadow: 0 0 10px var(--healthcare-color);
+}
+
+.solution-card:nth-child(4):hover .card-title {
+  color: var(--realestate-color);
+  text-shadow: 0 0 10px var(--realestate-color);
+}
+
+.solution-card:nth-child(5):hover .card-title {
+  color: var(--ai-color);
+  text-shadow: 0 0 10px var(--ai-color);
+}
+
+/* 卡片內容樣式 */
+.solution-card .card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.solution-card .card-content p {
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.8); /* 增加對比度 */
+  line-height: 1.7;
+  font-size: 1.05rem; /* 略微增大內容字體 */
+  flex-grow: 1;
+}
+
+/* 卡片連結樣式 */
+.card-link {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  margin-top: auto;
+  transition: all 0.3s ease;
+  font-size: 1.1rem; /* 增大連結字體 */
+}
+
+.link-arrow {
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+/* 為不同領域的連結設定顏色 */
+.solution-card:nth-child(1) .card-link {
+  color: var(--finance-color);
+}
+
+.solution-card:nth-child(2) .card-link {
+  color: var(--legal-color);
+}
+
+.solution-card:nth-child(3) .card-link {
+  color: var(--healthcare-color);
+}
+
+.solution-card:nth-child(4) .card-link {
+  color: var(--realestate-color);
+}
+
+.solution-card:nth-child(5) .card-link {
+  color: var(--ai-color);
+}
+
+.solution-card:hover .card-link {
+  transform: translateX(5px);
+}
+
+.solution-card:hover .link-arrow {
+  transform: translateX(5px);
+}
+
+/* 終端機效果 - 白色脈動邊框 */
+@keyframes whiteBorderPulse {
+  0% { box-shadow: 0 0 0 0 var(--white-glow); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+.solution-card:hover {
+  animation: whiteBorderPulse 1.5s infinite;
+}
+
+/* 特效：入場動畫，由下往上淡入 */
+#solutions.fade-in-section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+#solutions.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 卡片淡入動畫 */
+.solution-card {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s forwards;
+  animation-delay: calc(0.2s * var(--card-order, 0));
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.solution-card:nth-child(1) {
+  --card-order: 1;
+}
+
+.solution-card:nth-child(2) {
+  --card-order: 2;
+}
+
+.solution-card:nth-child(3) {
+  --card-order: 3;
+}
+
+.solution-card:nth-child(4) {
+  --card-order: 4;
+}
+
+.solution-card:nth-child(5) {
+  --card-order: 5;
+}
+
+/* 響應式設計 */
+@media (max-width: 1600px) {
+  .solutions-grid {
+    padding: 0 2rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 1400px) {
+  .solutions-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 992px) {
+  .solutions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 1.5rem;
+    gap: 1.25rem;
+  }
+  
+  .solution-card {
+    min-height: 360px;
+  }
+  
+  .solution-card .card-title {
+    font-size: 1.6rem; /* 縮小標題 */
+  }
+}
+
+@media (max-width: 768px) {
+  .solutions-grid {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+    margin: 2rem auto;
+  }
+  
+  .solution-card {
+    padding: 1.5rem;
+    min-height: 340px;
+  }
+  
+  .card-icon {
+    width: 65px;
+    height: 65px;
+    font-size: 1.7rem;
+  }
+  
+  .solution-card .card-title {
+    font-size: 1.5rem;
+  }
+  
+  .solution-card .card-content p {
+    font-size: 1rem;
+  }
+}

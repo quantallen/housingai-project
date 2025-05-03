@@ -11,13 +11,13 @@ interface BootMessage {
 }
 
 const BOOT_MESSAGES: Omit<BootMessage, 'visible'>[] = [
-  { message: "啟動系統...", delay: 300 },
-  { message: "載入房產數據庫...", delay: 500 },
-  { message: "建立安全連線...", delay: 700 },
-  { message: "連接房市資料伺服器...", delay: 900 },
-  { message: "載入AI房市分析模組...", delay: 1100 },
-  { message: "初始化物業視覺引擎...", delay: 1300 },
-  { message: "系統準備就緒。歡迎使用艾倫房仲團隊AI房屋顧問系統。", delay: 1500 }
+  { message: "啟動AI智能核心系統...", delay: 300 },
+  { message: "建立多領域知識圖譜連接...", delay: 500 },
+  { message: "載入深度學習模型架構...", delay: 700 },
+  { message: "初始化跨領域智能分析引擎...", delay: 900 },
+  { message: "校準領域專家神經網絡...", delay: 1100 },
+  { message: "優化自然語言處理模組...", delay: 1300 },
+  { message: "系統準備就緒。歡迎使用AI創新解決方案中心。", delay: 1500 }
 ];
 
 const BootScreen: React.FC<BootScreenProps> = ({ onComplete }) => {

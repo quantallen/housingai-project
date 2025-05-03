@@ -1,0 +1,172 @@
+/* 调整 Hero Section 样式 - 增强科技感 */
+.hero-section {
+  height: 40vh; /* 适当高度 */
+  min-height: 300px;
+  max-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 2rem;
+  margin-top: 60px; /* 与header高度一致 */
+  position: relative;
+  overflow: hidden;
+}
+
+/* 添加科技感背景元素 */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,255,140,0.05) 50%, rgba(0,0,0,0) 100%),
+    radial-gradient(circle at 20% 50%, rgba(0,255,140,0.1) 0%, rgba(0,0,0,0) 70%);
+  z-index: 0;
+}
+
+.hero-content {
+  max-width: 1200px;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 确保内容水平居中 */
+  justify-content: center;
+}
+
+.title {
+  font-size: 3.8rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.95);
+  background: linear-gradient(135deg, #ffffff 0%, #00ff8c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center; /* 确保文字居中 */
+  width: 100%;
+  position: relative;
+  text-shadow: 0 0 30px rgba(0, 255, 140, 0.5);
+}
+
+/* 为标题添加虚拟数据线效果 */
+.title::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(0,255,140,0) 0%, rgba(0,255,140,1) 50%, rgba(0,255,140,0) 100%);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba(0, 255, 140, 0.8);
+}
+
+@keyframes titleGlow {
+  from {
+    text-shadow: 0 0 10px rgba(0, 255, 140, 0.3);
+    filter: brightness(0.9);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(0, 255, 140, 0.7);
+    filter: brightness(1.1);
+  }
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 1.5rem auto 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-align: center; /* 确保文字居中 */
+  width: 100%;
+  position: relative;
+}
+
+/* 为副标题添加打字机效果 */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* 确保语言标签正确显示 */
+.title .en, .title .zh,
+.subtitle .en, .subtitle .zh {
+  display: block;
+}
+
+.lang-zh .title .zh,
+.lang-zh .subtitle .zh {
+  display: block;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 700;
+}
+
+.lang-zh .title .en,
+.lang-zh .subtitle .en {
+  display: none;
+}
+
+.lang-en .title .en,
+.lang-en .subtitle .en {
+  display: block;
+  font-family: 'Rajdhani', 'Barlow', sans-serif;
+  font-weight: 700;
+}
+
+.lang-en .title .zh,
+.lang-en .subtitle .zh {
+  display: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 30vh;
+    min-height: 200px;
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .title::after {
+    width: 70px;
+    bottom: -8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: 25vh;
+    min-height: 180px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .title::after {
+    width: 50px;
+    bottom: -5px;
+  }
+}

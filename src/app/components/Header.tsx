@@ -1,7 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
 import { Language } from '../globals.d';
-import '../header.css';
 
 interface HeaderProps {
   currentLang: Language;
@@ -21,10 +19,10 @@ const Header: React.FC<HeaderProps> = ({
     const targetElement = document.querySelector(targetId);
     
     if (targetElement) {
-      // Use type assertion to tell TypeScript this is an HTMLElement
+      // Type assertion to HTMLElement
       const htmlElement = targetElement as HTMLElement;
       
-      // Create type-safe style method
+      // Set scroll margin top for better positioning
       htmlElement.setAttribute('style', `scroll-margin-top: 80px`);
       
       window.scrollTo({
@@ -43,13 +41,12 @@ const Header: React.FC<HeaderProps> = ({
     <>
       <header>
         <div className="logo">
-          <Image 
+          <img 
             src="https://imgur.com/RCJfv2m.png" 
-            alt="艾倫房仲團隊" 
+            alt="AI創新解決方案" 
             className="company-logo"
             width={150}
             height={35}
-            priority
           />
         </div>
 
@@ -61,47 +58,31 @@ const Header: React.FC<HeaderProps> = ({
           ☰
         </button>
 
-        {/* Navigation menu - matching test.html layout */}
+        {/* Navigation menu - updated with new sections */}
         <nav className={`navigation ${navActive ? 'active' : ''}`}>
+          <a 
+            href="#solutions" 
+            className="nav-link" 
+            onClick={(e) => handleNavClick(e, '#solutions')}
+          >
+            <span className="en" style={{ display: currentLang === 'en' ? 'inline' : 'none' }}>Solutions</span>
+            <span className="zh" style={{ display: currentLang === 'zh' ? 'inline' : 'none' }}>解決方案</span>
+          </a>
           <a 
             href="#about" 
             className="nav-link" 
             onClick={(e) => handleNavClick(e, '#about')}
           >
-            <span className="en">About Us</span>
-            <span className="zh">關於我們</span>
+            <span className="en" style={{ display: currentLang === 'en' ? 'inline' : 'none' }}>About Us</span>
+            <span className="zh" style={{ display: currentLang === 'zh' ? 'inline' : 'none' }}>關於我們</span>
           </a>
           <a 
-            href="#services" 
+            href="#contact" 
             className="nav-link" 
-            onClick={(e) => handleNavClick(e, '#services')}
+            onClick={(e) => handleNavClick(e, '#contact')}
           >
-            <span className="en">Services</span>
-            <span className="zh">服務項目</span>
-          </a>
-          <a 
-            href="#team" 
-            className="nav-link" 
-            onClick={(e) => handleNavClick(e, '#team')}
-          >
-            <span className="en">Our Team</span>
-            <span className="zh">專業團隊</span>
-          </a>
-          <a 
-            href="#properties" 
-            className="nav-link" 
-            onClick={(e) => handleNavClick(e, '#properties')}
-          >
-            <span className="en">Properties</span>
-            <span className="zh">精選房源</span>
-          </a>
-          <a 
-            href="#chatbot" 
-            className="nav-link" 
-            onClick={(e) => handleNavClick(e, '#chatbot')}
-          >
-            <span className="en">AI Assistant</span>
-            <span className="zh">AI助理</span>
+            <span className="en" style={{ display: currentLang === 'en' ? 'inline' : 'none' }}>Contact</span>
+            <span className="zh" style={{ display: currentLang === 'zh' ? 'inline' : 'none' }}>聯絡我們</span>
           </a>
         </nav>
 
@@ -124,7 +105,7 @@ const Header: React.FC<HeaderProps> = ({
         </div>
       </header>
       
-      {/* Menu overlay */}
+      {/* Menu overlay for mobile */}
       {navActive && (
         <div 
           className={`menu-overlay ${navActive ? 'active' : ''}`} 

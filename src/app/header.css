@@ -1,4 +1,4 @@
-/* Navigation menu styles - matching mobile layout from test.html */
+/* 头部导航栏样式修复 */
 header {
   position: fixed;
   top: 0;
@@ -12,6 +12,12 @@ header {
   background-color: rgba(0, 0, 0, 0.9);
   height: 50px;
   gap: 0.5rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 255, 140, 0.2);
+  box-sizing: border-box;
+  overflow: visible;
 }
 
 .logo {
@@ -27,12 +33,11 @@ header {
   object-fit: contain;
 }
 
-/* Hide navigation on mobile */
+/* 移动端导航样式 */
 .navigation {
-  display: none !important;
+  display: none;
 }
 
-/* Active mobile navigation styles */
 .navigation.active {
   display: flex !important;
   position: fixed;
@@ -40,9 +45,9 @@ header {
   left: 0;
   width: 100%;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.95);
   z-index: 999;
-  border-top: 1px solid var(--glass-border);
+  border-top: 1px solid rgba(0, 255, 140, 0.2);
 }
 
 .nav-link {
@@ -50,28 +55,29 @@ header {
   padding: 15px;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--primary-text);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
 }
 
 .nav-link:hover {
   background-color: rgba(0, 255, 140, 0.1);
+  color: #00ff8c;
 }
 
-/* Hamburger menu toggle */
+/* 汉堡菜单 */
 .nav-toggle {
   grid-column: 2;
   justify-self: end;
   display: block;
   background: none;
   border: none;
-  color: var(--primary-text);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.3rem 0.7rem;
 }
 
-/* Language selector */
+/* 语言选择器 */
 .language-selector {
   grid-column: 3;
   display: flex;
@@ -81,29 +87,31 @@ header {
 
 .language-btn {
   background: transparent;
-  border: 1px solid var(--glass-border);
-  color: var(--primary-text);
+  border: 1px solid rgba(0, 255, 140, 0.2);
+  color: rgba(255, 255, 255, 0.9);
   padding: 5px 8px;
   font-size: 0.9rem;
   cursor: pointer;
+  border-radius: 3px;
 }
 
 .language-btn.active {
-  background-color: var(--glass-bg);
-  color: var(--language-active);
-  border-color: var(--language-active);
+  background-color: rgba(0, 255, 140, 0.2);
+  color: #00ff8c;
+  border-color: #00ff8c;
 }
 
-/* Menu overlay */
+/* 菜单覆盖层 */
 .menu-overlay {
   position: fixed;
-  top: 0;
+  top: 50px;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  height: calc(100% - 50px);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 1;
   backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   display: none;
 }
 
@@ -111,16 +119,12 @@ header {
   display: block;
 }
 
-/* Desktop navigation */
+/* 桌面导航样式 */
 @media (min-width: 769px) {
   header {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 10px 20px;
     height: 60px;
-    border-bottom: 1px solid var(--glass-border);
-    box-shadow: 0 0 15px rgba(0, 255, 140, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    padding: 0 30px;
+    background-color: rgba(0, 0, 0, 0.7);
   }
 
   .company-logo {
@@ -129,7 +133,10 @@ header {
 
   .navigation {
     display: flex !important;
-    flex: 1;
+    position: static;
+    flex-direction: row;
+    background: none;
+    border: none;
     justify-content: center;
     gap: 20px;
   }
@@ -143,34 +150,33 @@ header {
     border: 1px solid transparent;
     border-radius: 4px;
     transition: all 0.3s ease;
+    border-bottom: none;
   }
 
   .nav-link:hover {
-    color: var(--language-active);
-    border-color: var(--glass-border);
+    color: #00ff8c;
+    border-color: rgba(0, 255, 140, 0.2);
     background-color: rgba(0, 255, 140, 0.05);
-    box-shadow: 0 0 10px var(--glow-color);
+    box-shadow: 0 0 10px rgba(0, 255, 140, 0.3);
     transform: translateY(-2px);
   }
 
   .language-selector {
     margin-left: 20px;
-    flex: 0 0 auto;
   }
 
   .language-btn {
-    background: none;
-    border: 1px solid transparent;
+    padding: 6px 10px;
   }
 
   .language-btn:hover {
-    border-color: var(--glass-border);
-    box-shadow: 0 0 10px var(--glow-color);
+    border-color: rgba(0, 255, 140, 0.2);
+    box-shadow: 0 0 10px rgba(0, 255, 140, 0.3);
     background-color: rgba(0, 255, 140, 0.05);
   }
 }
 
-/* Small mobile screens */
+/* 小屏幕手机 */
 @media (max-width: 375px) {
   header {
     padding: 0 10px;

@@ -2,21 +2,25 @@
 
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import AboutSection from './components/AboutSection';
-import ServicesSection from './components/ServicesSection';
-import TeamSection from './components/TeamSection';
-import PropertiesSection from './components/PropertiesSection';
-import ChatbotSection from './components/ChatbotSection'; // 新增聊天機器人部分
 import Footer from './components/Footer';
 import MatrixCanvas from './components/MatrixCanvas';
 import BootScreen from './components/BootScreen';
+import MainPage from './components/MainPage';
+import HeroSection from './components/HeroSection';
+import TeamSection from './components/TeamSection';
+import ContactSection from './components/ContactSection';
+import ComingSoonPage from './components/ComingSoonPage';
+
 // Import style files
-import './properties.css';
-import './header.css';
-import './services.css';
+import './globals.css';
 import './bootscreen.css';
-import './chatbot.css'; // 新增聊天機器人樣式
+import './header.css';
+import './hero-section.css';
+import './solutions.css';
+import './team.css';
+import './contact.css';
+import './footer.css';
+import './coming-soon.css'; // 確保添加這個文件
 import { Language } from './globals.d';
 
 // Ensure TypeScript can recognize window.matrixInterval
@@ -31,6 +35,24 @@ export default function Home() {
   const [bootComplete, setBootComplete] = useState<boolean>(false);
   const [contentFaded, setContentFaded] = useState<boolean>(false);
   const [navActive, setNavActive] = useState<boolean>(false);
+  const [showComingSoon, setShowComingSoon] = useState<boolean>(false);
+  const [comingSoonService, setComingSoonService] = useState<string>('');
+
+  // 處理服務點擊事件
+  const handleServiceClick = (service: string) => {
+    setComingSoonService(service);
+    setShowComingSoon(true);
+    // 將頁面滾動到頂部
+    window.scrollTo(0, 0);
+    // 防止背景滾動
+    document.body.style.overflow = 'hidden';
+  };
+
+  // 返回主頁
+  const handleBackToHome = () => {
+    setShowComingSoon(false);
+    document.body.style.overflow = '';
+  };
 
   // Handle language change
   const handleLanguageChange = (lang: Language) => {
@@ -65,6 +87,7 @@ export default function Home() {
       }
     });
   };
+  
   // Toggle mobile navigation
   const toggleNav = () => {
     setNavActive(!navActive);
@@ -106,6 +129,13 @@ export default function Home() {
     return () => window.removeEventListener('resize', handleResize);
   }, [navActive]);
 
+  // Initialize language display as soon as component mounts
+  useEffect(() => {
+    if (bootComplete) {
+      fixLanguageDisplay(currentLang);
+    }
+  }, [bootComplete, currentLang]);
+
   // Initialize MatrixCanvas
   useEffect(() => {
     try {
@@ -130,7 +160,7 @@ export default function Home() {
     };
   }, []);
 
-  // Add language persistence (optional)
+  // Add language persistence
   useEffect(() => {
     // Check if language preference is stored in localStorage
     const savedLang = localStorage.getItem('site-language');
@@ -144,12 +174,42 @@ export default function Home() {
     localStorage.setItem('site-language', currentLang);
   }, [currentLang]);
 
+  // Add CSS variables to document root
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--glow-color', 'rgba(0, 255, 140, 0.4)');
+    root.style.setProperty('--glass-bg', 'rgba(0, 10, 2, 0.7)');
+    root.style.setProperty('--glass-border', 'rgba(0, 255, 140, 0.2)');
+    root.style.setProperty('--primary-text', 'rgba(255, 255, 255, 0.9)');
+    root.style.setProperty('--language-active', '#00ff8c');
+    
+    // Add a gradient background to body
+    document.body.style.background = 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%)';
+    document.body.style.minHeight = '100vh';
+    document.body.style.margin = '0';
+    document.body.style.fontFamily = "'Exo 2', 'Noto Sans TC', sans-serif";
+    document.body.style.color = 'white';
+  }, []);
+
   // Render with error boundary
   try {
+    // 如果顯示 ComingSoon 頁面
+    if (showComingSoon) {
+      return (
+        <div className={`lang-${currentLang}`}>
+          {bootComplete && <MatrixCanvas />}
+          <ComingSoonPage 
+            service={comingSoonService} 
+            onBackClick={handleBackToHome}
+            lang={currentLang}
+          />
+        </div>
+      );
+    }
+
+    // 否則顯示主頁
     return (
       <div className={`lang-${currentLang}`}>
-        <div className="gradient-bg"></div>
-        
         {/* Conditionally render MatrixCanvas to prevent resource consumption during boot */}
         {bootComplete && <MatrixCanvas />}
         
@@ -166,13 +226,23 @@ export default function Home() {
         />
 
         <main>
+          {/* Hero Section */}
           <HeroSection fadeIn={contentFaded} />
-          <AboutSection fadeIn={contentFaded} />
-          <ServicesSection fadeIn={contentFaded} />
+          
+          {/* Main Page with solution cards */}
+          <MainPage 
+            lang={currentLang} 
+            fadeIn={contentFaded} 
+            onServiceClick={handleServiceClick}
+          />
+          
+          {/* Team Section */}
           <TeamSection fadeIn={contentFaded} />
-          <PropertiesSection lang={currentLang} fadeIn={contentFaded} />
-          <ChatbotSection lang={currentLang} fadeIn={contentFaded} /> {/* 新增聊天機器人部分 */}
+          
+          {/* Contact Section */}
+          <ContactSection fadeIn={contentFaded} />
         </main>
+        
         <Footer lang={currentLang} />
       </div>
     );
@@ -181,7 +251,7 @@ export default function Home() {
     console.error("Error rendering page:", error);
     return (
       <div>
-        <h1>艾倫房仲團隊</h1>
+        <h1>AI解決方案中心</h1>
         <p>抱歉，頁面載入出現問題。請刷新頁面重試。</p>
         <button onClick={() => window.location.reload()}>重新載入</button>
       </div>
